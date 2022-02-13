@@ -9,9 +9,9 @@ import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-public class CrispyMachineCore extends SlimefunItem {
+public class TearOfNewton extends SlimefunItem {
 
-    public CrispyMachineCore(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
+    public TearOfNewton(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
     }
 
@@ -24,8 +24,6 @@ public class CrispyMachineCore extends SlimefunItem {
     public void onItemRightClick(PlayerRightClickEvent event) {
         event.cancel();
         Player player = event.getPlayer();
-        player.setHealth(player.getHealth()+1);
-
+        player.setGravity(!player.hasGravity());
     }
-    
 }

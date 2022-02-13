@@ -11,6 +11,8 @@ import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 
+import javax.annotation.Nonnull;
+
 public class CrispyMachine extends JavaPlugin implements SlimefunAddon {
 
     @Override
@@ -25,7 +27,7 @@ public class CrispyMachine extends JavaPlugin implements SlimefunAddon {
 
         // Give your Category a unique id.
         NamespacedKey categoryId = new NamespacedKey(this, "crispy_machine");
-        ItemGroup category = new ItemGroup(categoryId, categoryItem);
+        ItemGroup itemGroup = new ItemGroup(categoryId, categoryItem);
 
         /*
          * Creating a Recipe
@@ -34,7 +36,7 @@ public class CrispyMachine extends JavaPlugin implements SlimefunAddon {
         ItemStack[] crispyMachineCoreRecipe = {
             SlimefunItems.STEEL_INGOT, new ItemStack(Material.LEVER), SlimefunItems.STEEL_INGOT,
             SlimefunItems.STEEL_INGOT, SlimefunItems.ELECTRIC_MOTOR, SlimefunItems.STEEL_INGOT, 
-            SlimefunItems.STEEL_INGOT, SlimefunItems.SMALL_CAPACITOR, SlimefunItems.STEEL_INGOT 
+            SlimefunItems.STEEL_INGOT, SlimefunItems.ENERGY_CONNECTOR, SlimefunItems.STEEL_INGOT 
         };
         ItemStack[] crispyMachineShellRecipe = {
             SlimefunItems.REINFORCED_PLATE, SlimefunItems.REINFORCED_ALLOY_INGOT, SlimefunItems.REINFORCED_PLATE,
@@ -44,12 +46,12 @@ public class CrispyMachine extends JavaPlugin implements SlimefunAddon {
         ItemStack[] dieselGeneratorRecipe = {
             new ItemStack(Material.IRON_TRAPDOOR), new ItemStack(Material.DISPENSER), new ItemStack(Material.IRON_TRAPDOOR),
             null, new ItemStack(Material.PISTON), null,
-            null, Materials.CRISPY_MACHINE_CORE, null
+            null, Items.CRISPY_MACHINE_CORE, null
         };
         ItemStack[] gasolineGeneratorRecipe = {
             new ItemStack(Material.IRON_TRAPDOOR), SlimefunItems.ELECTRO_MAGNET, new ItemStack(Material.IRON_TRAPDOOR),
             null, new ItemStack(Material.PISTON), null,
-            null, Materials.CRISPY_MACHINE_CORE, null
+            null, Items.CRISPY_MACHINE_CORE, null
         };
         ItemStack[] printerRecipe = {
             SlimefunItems.STEEL_INGOT, SlimefunItems.BATTERY, SlimefunItems.STEEL_INGOT,
@@ -57,23 +59,33 @@ public class CrispyMachine extends JavaPlugin implements SlimefunAddon {
             SlimefunItems.STEEL_INGOT, SlimefunItems.BATTERY, SlimefunItems.STEEL_INGOT
         };
         ItemStack[] copierRecipe = {
-            Materials.CRISPY_MACHINE_SHELL, Materials.PRINTER, Materials.CRISPY_MACHINE_SHELL,
-            Materials.CRISPY_MACHINE_SHELL, Materials.CRISPY_MACHINE_CORE, Materials.CRISPY_MACHINE_SHELL,
-            Materials.CRISPY_MACHINE_SHELL, new ItemStack(Material.NETHERITE_BLOCK), Materials.CRISPY_MACHINE_SHELL
+            Items.CRISPY_MACHINE_SHELL, Items.PRINTER, Items.CRISPY_MACHINE_SHELL,
+            Items.CRISPY_MACHINE_SHELL, Items.CRISPY_MACHINE_CORE, Items.CRISPY_MACHINE_SHELL,
+            Items.CRISPY_MACHINE_SHELL, new ItemStack(Material.NETHERITE_BLOCK), Items.CRISPY_MACHINE_SHELL
         };
+        ItemStack[] menuRecipe = {new ItemStack(Material.PAPER)};
+        ItemStack[] tearOfNewtonRecipe = {
+                null, new ItemStack(Material.GHAST_TEAR), null,
+                new ItemStack(Material.PISTON), Items.CRISPY_MACHINE_CORE, new ItemStack(Material.PISTON),
+                new ItemStack(Material.BLAZE_POWDER), new ItemStack(Material.BLAZE_POWDER), new ItemStack(Material.BLAZE_POWDER)
+        };
+
+
 
         /*
          * Registering the Item
          */
-        DieselOil dieselOil = new DieselOil(category, Materials.DIESEL_OIL, RecipeType.COMPRESSOR, oilRecipe);
-        Gasoline gasoline = new Gasoline(category, Materials.GASOLINE, RecipeType.SMELTERY, oilRecipe);
-        CrispyMachineCore crispyMachineCore = new CrispyMachineCore(category, Materials.CRISPY_MACHINE_CORE, RecipeType.ENHANCED_CRAFTING_TABLE, crispyMachineCoreRecipe);
-        CrispyMachineShell crispyMachineShell = new CrispyMachineShell(category, Materials.CRISPY_MACHINE_SHELL, RecipeType.ENHANCED_CRAFTING_TABLE, crispyMachineShellRecipe);
-        DieselGenerator dieselGenerator = new DieselGenerator(category, Materials.DIESEL_GENERATOR, RecipeType.ENHANCED_CRAFTING_TABLE, dieselGeneratorRecipe);
-        GasolineGenerator gasolineGenerator = new GasolineGenerator(category, Materials.GASOLINE_GENERATOR, RecipeType.ENHANCED_CRAFTING_TABLE, gasolineGeneratorRecipe);
-        Printer printer = new Printer(category, Materials.PRINTER, RecipeType.ENHANCED_CRAFTING_TABLE, printerRecipe);
-        GeneralTemplate generalTemplate = new GeneralTemplate(category, Materials.GENERAL_TEMPLATE, new RecipeType(Materials.PRINTER, "PRINTER"), new ItemStack[]{SlimefunItems.REINFORCED_ALLOY_INGOT});
-        Copier copier = new Copier(category, Materials.COPIER, RecipeType.ENHANCED_CRAFTING_TABLE, copierRecipe);
+        DieselOil dieselOil = new DieselOil(itemGroup, Items.DIESEL_OIL, RecipeType.COMPRESSOR, oilRecipe);
+        Gasoline gasoline = new Gasoline(itemGroup, Items.GASOLINE, RecipeType.SMELTERY, oilRecipe);
+        CrispyMachineCore crispyMachineCore = new CrispyMachineCore(itemGroup, Items.CRISPY_MACHINE_CORE, RecipeType.ENHANCED_CRAFTING_TABLE, crispyMachineCoreRecipe);
+        CrispyMachineShell crispyMachineShell = new CrispyMachineShell(itemGroup, Items.CRISPY_MACHINE_SHELL, RecipeType.ENHANCED_CRAFTING_TABLE, crispyMachineShellRecipe);
+        DieselGenerator dieselGenerator = new DieselGenerator(itemGroup, Items.DIESEL_GENERATOR, RecipeType.ENHANCED_CRAFTING_TABLE, dieselGeneratorRecipe);
+        GasolineGenerator gasolineGenerator = new GasolineGenerator(itemGroup, Items.GASOLINE_GENERATOR, RecipeType.ENHANCED_CRAFTING_TABLE, gasolineGeneratorRecipe);
+        Printer printer = new Printer(itemGroup, Items.PRINTER, RecipeType.ENHANCED_CRAFTING_TABLE, printerRecipe);
+        GeneralTemplate generalTemplate = new GeneralTemplate(itemGroup, Items.GENERAL_TEMPLATE, new RecipeType(Items.PRINTER, "PRINTER"), new ItemStack[]{SlimefunItems.REINFORCED_ALLOY_INGOT});
+        Copier copier = new Copier(itemGroup, Items.COPIER, RecipeType.ENHANCED_CRAFTING_TABLE, copierRecipe);
+        Menu menu = new Menu(itemGroup, Items.MENU, RecipeType.ENHANCED_CRAFTING_TABLE, menuRecipe);
+        TearOfNewton tearOfNewton = new TearOfNewton(itemGroup, Items.TEAR_OF_NEWTON, RecipeType.ENHANCED_CRAFTING_TABLE, tearOfNewtonRecipe);
 
         dieselOil.register(this);
         gasoline.register(this);
@@ -84,6 +96,15 @@ public class CrispyMachine extends JavaPlugin implements SlimefunAddon {
         printer.register(this);
         generalTemplate.register(this);
         copier.register(this);
+        menu.register(this);
+        tearOfNewton.register(this);
+
+        try {
+            registerExpGivers(itemGroup);
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
@@ -97,6 +118,7 @@ public class CrispyMachine extends JavaPlugin implements SlimefunAddon {
         return null;
     }
 
+    @Nonnull
     @Override
     public JavaPlugin getJavaPlugin() {
         /*
@@ -104,6 +126,39 @@ public class CrispyMachine extends JavaPlugin implements SlimefunAddon {
          * If you are using your main class for this, simply return "this".
          */
         return this;
+    }
+
+    private void registerExpGivers(ItemGroup itemGroup) throws NoSuchFieldException {
+        ItemStack[] expGiverIRecipe = {
+                new ItemStack(Material.LAPIS_LAZULI), new ItemStack(Material.REDSTONE), new ItemStack(Material.LAPIS_LAZULI),
+                new ItemStack(Material.REDSTONE), SlimefunItems.STEEL_PLATE, new ItemStack(Material.REDSTONE),
+                new ItemStack(Material.LAPIS_LAZULI), new ItemStack(Material.REDSTONE), new ItemStack(Material.LAPIS_LAZULI)
+        };
+        ExpGiver expGiverI = new ExpGiver(itemGroup, Items.EXP_GIVER_I, RecipeType.ENHANCED_CRAFTING_TABLE, expGiverIRecipe, 1);
+        expGiverI.register(this);
+
+        for(int i = 2; i<=10; i++) {
+            ExpGiver giver = new ExpGiver(itemGroup, Items.get("EXP_GIVER_" + toRoman(i)), RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
+                    Items.get("EXP_GIVER_" + toRoman(i - 1)), Items.get("EXP_GIVER_" + toRoman(i - 1))
+            }, i);
+            giver.register(this);
+        }
+    }
+
+    private static String toRoman(int num){
+        switch (num){
+            case 1: return "I";
+            case 2: return "II";
+            case 3: return "III";
+            case 4: return "IV";
+            case 5: return "V";
+            case 6: return "VI";
+            case 7: return "VII";
+            case 8: return "VIII";
+            case 9: return "IX";
+            case 10: return "X";
+            default: return "";
+        }
     }
 
 }

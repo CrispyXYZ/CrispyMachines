@@ -18,6 +18,8 @@ import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 
+import javax.annotation.Nonnull;
+
 public class Copier extends SlimefunItem implements EnergyNetComponent, InventoryBlock {
 
 
@@ -58,7 +60,7 @@ public class Copier extends SlimefunItem implements EnergyNetComponent, Inventor
                 ItemStack input2 = inv.getItemInSlot(11);
                 ItemStack output = inv.getItemInSlot(15);
 
-                if(!Materials.GENERAL_TEMPLATE.getItem().isItem(input2)) input2=null;
+                if(!Items.GENERAL_TEMPLATE.getItem().isItem(input2)) input2=null;
                 if(input1==null||input2==null) return;
                 if("AIR".equalsIgnoreCase(input1.getType().name())) return;
                 if(output!=null&&(output.getType() != input1.getType()
@@ -79,16 +81,17 @@ public class Copier extends SlimefunItem implements EnergyNetComponent, Inventor
     }
 
     private boolean takePower(Block block){
-        if(getCharge(block.getLocation()) < 200000) return false;
-        removeCharge(block.getLocation(), 200000);
+        if(getCharge(block.getLocation()) < 4000000) return false;
+        removeCharge(block.getLocation(), 4000000);
         return true;
     }
 
     @Override
     public int getCapacity() {
-        return 200000;
+        return 4000000;
     }
 
+    @Nonnull
     @Override
     public EnergyNetComponentType getEnergyComponentType() {
         return EnergyNetComponentType.CONSUMER;

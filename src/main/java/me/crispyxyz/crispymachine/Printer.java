@@ -9,6 +9,8 @@ import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
 
+import javax.annotation.Nonnull;
+
 
 public class Printer extends AContainer {
 
@@ -16,6 +18,7 @@ public class Printer extends AContainer {
         super(itemGroup, item, recipeType, recipe);
     }
 
+    @Nonnull
     @Override
     public String getMachineIdentifier() {
         return "PRINTER";
@@ -43,7 +46,7 @@ public class Printer extends AContainer {
 
     @Override
     protected void registerDefaultRecipes() {
-        this.registerRecipe(20, SlimefunItems.REINFORCED_ALLOY_INGOT, Materials.GENERAL_TEMPLATE);
+        this.registerRecipe(20, SlimefunItems.REINFORCED_ALLOY_INGOT, Items.GENERAL_TEMPLATE);
     }
 
 }

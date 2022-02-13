@@ -1,6 +1,5 @@
 package me.crispyxyz.crispymachine;
 
-import lombok.SneakyThrows;
 import org.bukkit.Material;
 
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;

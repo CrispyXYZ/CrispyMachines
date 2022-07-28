@@ -22,8 +22,8 @@ jobs:
     - name: Build with Maven
       run: mvn package --file pom.xml
     - name: Archive artifacts (artifacts)
-        uses: actions/upload-artifact@v2
-        if: success()
-        with:
-          name: Build
-          path: target/CrispyMachine v1.0.0.jar
+      uses: actions/upload-artifact@v2
+      if: success()
+      with:
+        name: Build
+        path: target/CrispyMachine v1.0.0.jar

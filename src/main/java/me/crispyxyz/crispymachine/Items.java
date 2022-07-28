@@ -18,27 +18,6 @@ public final class Items {
     public static final SlimefunItemStack COPIER = new SlimefunItemStack("COPIER", Material.IRON_BLOCK, "&e复制机", "&3用于复制物品", "&7 200,000 J 缓存", "&7 200,000 J 每次使用");
     public static final SlimefunItemStack MENU = new SlimefunItemStack("MENU", Material.PAPER, "&e&l服务器菜单");
     public static final SlimefunItemStack TEAR_OF_NEWTON = new SlimefunItemStack("TEAR_OF_NEWTON",Material.GHAST_TEAR,"&4牛顿的眼泪","&3右键消除重力");
-
-    public static final SlimefunItemStack EXP_GIVER_I = new SlimefunItemStack("EXP_GIVER_I",Material.EXPERIENCE_BOTTLE,"&e经验I","&3右键获取1点经验");
-    public static final SlimefunItemStack EXP_GIVER_II = new SlimefunItemStack("EXP_GIVER_II",Material.EXPERIENCE_BOTTLE,"&e经验II","&3右键获取2点经验");
-    public static final SlimefunItemStack EXP_GIVER_III = new SlimefunItemStack("EXP_GIVER_III",Material.EXPERIENCE_BOTTLE,"&e经验III","&3右键获取4点经验");
-    public static final SlimefunItemStack EXP_GIVER_IV = new SlimefunItemStack("EXP_GIVER_IV",Material.EXPERIENCE_BOTTLE,"&e经验IV","&3右键获取8点经验");
-    public static final SlimefunItemStack EXP_GIVER_V = new SlimefunItemStack("EXP_GIVER_V",Material.EXPERIENCE_BOTTLE,"&e经验V","&3右键获取16点经验");
-    public static final SlimefunItemStack EXP_GIVER_VI = new SlimefunItemStack("EXP_GIVER_VI",Material.EXPERIENCE_BOTTLE,"&e经验VI","&3右键获取32点经验");
-    public static final SlimefunItemStack EXP_GIVER_VII = new SlimefunItemStack("EXP_GIVER_VII",Material.EXPERIENCE_BOTTLE,"&e经验VII","&3右键获取64点经验");
-    public static final SlimefunItemStack EXP_GIVER_VIII = new SlimefunItemStack("EXP_GIVER_VIII",Material.EXPERIENCE_BOTTLE,"&e经验VIII","&3右键获取128点经验");
-    public static final SlimefunItemStack EXP_GIVER_IX = new SlimefunItemStack("EXP_GIVER_IX",Material.EXPERIENCE_BOTTLE,"&e经验IX","&3右键获取256点经验");
-    public static final SlimefunItemStack EXP_GIVER_X = new SlimefunItemStack("EXP_GIVER_X",Material.EXPERIENCE_BOTTLE,"&e经验X","&3右键获取512点经验");
-
-    public static SlimefunItemStack get(String name) throws NoSuchFieldException {
-        Field field = Items.class.getField(name);
-        SlimefunItemStack item = null;
-        try {
-            item = (SlimefunItemStack) field.get(null);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-        return item;
-    }
+    public static final SlimefunItemStack DEOXIDATION_SMELTERY = new SlimefunItemStack("DEOXIDATION_SMELTERY", Material.BLAST_FURNACE, "&e绝氧电力冶炼炉", "&3用于将钻石转化为压缩碳", "&7 800 J 缓存", "&7 200 J/s");
 
 }

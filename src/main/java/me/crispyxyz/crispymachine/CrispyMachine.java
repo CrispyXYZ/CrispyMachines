@@ -69,6 +69,11 @@ public class CrispyMachine extends JavaPlugin implements SlimefunAddon {
                 new ItemStack(Material.PISTON), Items.CRISPY_MACHINE_CORE, new ItemStack(Material.PISTON),
                 new ItemStack(Material.BLAZE_POWDER), new ItemStack(Material.BLAZE_POWDER), new ItemStack(Material.BLAZE_POWDER)
         };
+        ItemStack[] deoxidationSmelteryRecipe = {
+                SlimefunItems.HARDENED_GLASS, new ItemStack(Material.NETHER_BRICK_FENCE), SlimefunItems.HARDENED_GLASS,
+                new ItemStack(Material.NETHER_BRICK), Items.CRISPY_MACHINE_CORE, new ItemStack(Material.NETHER_BRICK),
+                SlimefunItems.HARDENED_GLASS, new ItemStack(Material.BLAZE_ROD), SlimefunItems.HARDENED_GLASS
+        };
 
 
 
@@ -86,6 +91,7 @@ public class CrispyMachine extends JavaPlugin implements SlimefunAddon {
         Copier copier = new Copier(itemGroup, Items.COPIER, RecipeType.ENHANCED_CRAFTING_TABLE, copierRecipe);
         Menu menu = new Menu(itemGroup, Items.MENU, RecipeType.ENHANCED_CRAFTING_TABLE, menuRecipe);
         TearOfNewton tearOfNewton = new TearOfNewton(itemGroup, Items.TEAR_OF_NEWTON, RecipeType.ENHANCED_CRAFTING_TABLE, tearOfNewtonRecipe);
+        DeoxidationSmeltery deoxidationSmeltery = new DeoxidationSmeltery(itemGroup, Items.DEOXIDATION_SMELTERY, RecipeType.ENHANCED_CRAFTING_TABLE, deoxidationSmelteryRecipe);
 
         dieselOil.register(this);
         gasoline.register(this);
@@ -98,12 +104,7 @@ public class CrispyMachine extends JavaPlugin implements SlimefunAddon {
         copier.register(this);
         menu.register(this);
         tearOfNewton.register(this);
-
-        try {
-            registerExpGivers(itemGroup);
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        }
+        deoxidationSmeltery.register(this);
 
     }
 
@@ -126,39 +127,6 @@ public class CrispyMachine extends JavaPlugin implements SlimefunAddon {
          * If you are using your main class for this, simply return "this".
          */
         return this;
-    }
-
-    private void registerExpGivers(ItemGroup itemGroup) throws NoSuchFieldException {
-        ItemStack[] expGiverIRecipe = {
-                new ItemStack(Material.LAPIS_LAZULI), new ItemStack(Material.REDSTONE), new ItemStack(Material.LAPIS_LAZULI),
-                new ItemStack(Material.REDSTONE), SlimefunItems.STEEL_PLATE, new ItemStack(Material.REDSTONE),
-                new ItemStack(Material.LAPIS_LAZULI), new ItemStack(Material.REDSTONE), new ItemStack(Material.LAPIS_LAZULI)
-        };
-        ExpGiver expGiverI = new ExpGiver(itemGroup, Items.EXP_GIVER_I, RecipeType.ENHANCED_CRAFTING_TABLE, expGiverIRecipe, 1);
-        expGiverI.register(this);
-
-        for(int i = 2; i<=10; i++) {
-            ExpGiver giver = new ExpGiver(itemGroup, Items.get("EXP_GIVER_" + toRoman(i)), RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
-                    Items.get("EXP_GIVER_" + toRoman(i - 1)), Items.get("EXP_GIVER_" + toRoman(i - 1))
-            }, i);
-            giver.register(this);
-        }
-    }
-
-    private static String toRoman(int num){
-        switch (num){
-            case 1: return "I";
-            case 2: return "II";
-            case 3: return "III";
-            case 4: return "IV";
-            case 5: return "V";
-            case 6: return "VI";
-            case 7: return "VII";
-            case 8: return "VIII";
-            case 9: return "IX";
-            case 10: return "X";
-            default: return "";
-        }
     }
 
 }
